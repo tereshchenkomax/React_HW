@@ -8,11 +8,17 @@ export default class Content extends Component {
   };
 
   selectUser = ({ target }) => {
-    this.setState({
-      filteredUsers: this.props.users.filter(user =>
-        user.age == target.value ? user : null
-      )
-    });
+    if (target.value === "select_age") {
+      this.setState({
+        filteredUsers: this.props.users
+      });
+    } else {
+      this.setState({
+        filteredUsers: this.props.users.filter(user =>
+          user.age == target.value ? user : null
+        )
+      });
+    }
   };
 
   render() {

@@ -8,11 +8,14 @@ export const Select = ({ users, selectUser }) => {
   );
   return (
     <select name="names" id="names" onChange={selectUser}>
-      {forSelect.map(user => (
-        <option key={user.id} val={user.age}>
-          {user.age}
-        </option>
-      ))}
+      <option value="select_age">---Please select age -----</option>
+      {forSelect
+        .sort((a, b) => a > b)
+        .map(user => (
+          <option key={user.id} val={user.age}>
+            {user.age}
+          </option>
+        ))}
     </select>
   );
 };
