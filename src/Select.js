@@ -1,21 +1,23 @@
 import React from "react";
 
 export const Select = ({ users, selectUser }) => {
-  let forSelect = users.filter(
-    (thing, index, self) =>
-      self.findIndex(t => t.place === thing.place && t.age === thing.age) ===
-      index
-  );
+  let agesUnique = users
+    .map(item => item.age)
+    .filter((value, index, self) => self.indexOf(value) === index)
+    .sort((a, b) => a - b);
+  console.log(agesUnique);
   return (
     <select name="names" id="names" onChange={selectUser}>
-      <option value="select_age">---Please select age -----</option>
-      {forSelect
-        .sort((a, b) => a > b)
-        .map(user => (
-          <option key={user.id} val={user.age}>
-            {user.age}
-          </option>
-        ))}
+      <option value="select_age" key="-1">
+        ---Please select age -----
+      </option>
+      {agesUnique.map(user => (
+        <option key={user} value={user}>
+          {user}
+        </option>
+      ))}
     </select>
   );
 };
+
+//selected принудительно
